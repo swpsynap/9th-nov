@@ -1,0 +1,199 @@
+===== Parcel Trucks =====
+Question Title: Parcel Trucks
+Meena runs a transport company. Today she has [b]N[/b] parcels standing in a line, numbered 1 to [b]N[/b], and parcel [b]i[/b] weighs [b]a&#91;i&#93;[/b] kg. She has exactly [b]K[/b] trucks.
+The parcels must be loaded in order: truck 1 takes the first few parcels, truck 2 takes the next few, and so on, until truck [b]K[/b] takes the last few. Every truck must take at least one parcel, and every parcel goes on exactly one truck.
+A truck is safe only if the total weight it carries is at least [b]lo[/b] kg (so the trip is worth it) and at most [b]hi[/b] kg (so it is not overloaded).
+Count the number of ways to load all the parcels so that all [b]K[/b] trucks are safe. Two ways are different if at least one truck gets a different set of parcels.
+The number can be very large, so print it modulo 10[sup]9[/sup] + 7. If no way is possible, print 0.
+
+[b]Input Format:[/b]
+The first line contains four integers [b]N[/b], [b]K[/b], [b]lo[/b] and [b]hi[/b].
+The second line contains [b]N[/b] integers [b]a[1][/b], [b]a[2][/b], ..., [b]a[N][/b].
+[b]The input format will be read from the STDIN by the candidate.[/b]
+
+[b]Output Format:[/b]
+Print one integer, the number of ways modulo 10[sup]9[/sup] + 7.
+[b]The output will be matched to the candidate&#39;s output printed on the STDOUT.[/b]
+
+[b]Constraints:[/b][ul][li]1 &lt;= [b]K[/b] &lt;= [b]N[/b] &lt;= 3000[/li][li]1 &lt;= [b]a&#91;i&#93;[/b] &lt;= 10[sup]9[/sup][/li][li]1 &lt;= [b]lo[/b] &lt;= [b]hi[/b] &lt;= 3 * 10[sup]12[/sup][/li][/ul]
+[b]Example:[/b]
+[b]Input:[/b]
+6 3 4 8
+3 2 4 1 5 2
+[b]Output:[/b]
+2
+[b]Explanation:[/b]
+Truck 1 must take [3, 2] with weight 5, because [3] alone is too light and [3, 2, 4] = 9 is too heavy.
+The remaining parcels 4, 1, 5, 2 go into two trucks. [4] and [1, 5, 2] give weights 4 and 8, and [4, 1] and [5, 2] give weights 5 and 7. Both are safe. The last split, [4, 1, 5] and [2], gives 10 and 2, which is not safe. Answer = [b]2.[/b]
+[b]Sample Input[/b]
+5 2 6 10
+4 1 2 3 4
+[b]Sample Output[/b]
+1
+
+
+===== Ladder Climb =====
+Question Title: Ladder Climb
+Arjun is crossing a rocky field, shown as a grid with [b]N[/b] rows and [b]M[/b] columns. Cell ([b]i[/b], [b]j[/b]) has a height of [b]h&#91;i&#93;&#91;j&#93;[/b] metres, or [b]h&#91;i&#93;&#91;j&#93;[/b] = -1 if the cell is a deep pit that cannot be entered.
+Arjun starts at the top-left cell (1, 1) and wants to reach the bottom-right cell ([b]N[/b], [b]M[/b]). In one move he can go to a cell that shares a side with his current cell (up, down, left or right), as long as it is not a pit.
+He carries a folding ladder of strength [b]L[/b]. With it, he can move between two neighbouring cells only if the difference between their heights is at most [b]L[/b]. A stronger ladder is heavier, so Arjun wants [b]L[/b] to be as small as possible.
+There is also a time limit: Arjun can make at most [b]P[/b] moves in total. He may visit the same cell more than once.
+Note that the path with the gentlest slopes may be long, so Arjun may need a stronger ladder to finish within [b]P[/b] moves.
+Find the smallest whole number [b]L[/b] that lets Arjun reach cell ([b]N[/b], [b]M[/b]) from cell (1, 1) in at most [b]P[/b] moves. If no ladder strength works, print -1.
+
+[b]Input Format:[/b]
+The first line contains three integers [b]N[/b], [b]M[/b] and [b]P[/b].
+Each of the next [b]N[/b] lines contains [b]M[/b] integers. The [b]j[/b]-th integer of the [b]i[/b]-th line is [b]h&#91;i&#93;&#91;j&#93;[/b].
+[b]The input format will be read from the STDIN by the candidate.[/b]
+
+[b]Output Format:[/b]
+Print one integer, the smallest ladder strength [b]L[/b], or -1 if it is not possible.
+[b]The output will be matched to the candidate&#39;s output printed on the STDOUT.[/b]
+
+[b]Constraints:[/b][ul][li]1 &lt;= [b]N[/b], [b]M[/b] &lt;= 500[/li][li]1 &lt;= [b]P[/b] &lt;= [b]N[/b] * [b]M[/b][/li][li][b]h&#91;i&#93;&#91;j&#93;[/b] = -1, or 0 &lt;= [b]h&#91;i&#93;&#91;j&#93;[/b] &lt;= 10[sup]9[/sup][/li][li]Cells (1, 1) and ([b]N[/b], [b]M[/b]) are never pits.[/li][/ul]
+[b]Example:[/b]
+[b]Input:[/b]
+3 4 7
+4 -1 5 8
+1 4 3 9
+3 -1 0 6
+[b]Output:[/b]
+3
+[b]Explanation:[/b]
+Cell (1, 2) is a pit, so the first move must go down from height 4 to height 1. This already needs [b]L[/b] &gt;= 3.
+With [b]L[/b] = 3, Arjun can walk (1, 1) -&gt; (2, 1) -&gt; (2, 2) -&gt; (2, 3) -&gt; (1, 3) -&gt; (1, 4) -&gt; (2, 4) -&gt; (3, 4), with heights 4, 1, 4, 3, 5, 8, 9, 6. The height differences are 3, 3, 1, 2, 3, 1, 3, and the path uses exactly 7 moves. Answer = [b]3.[/b]
+[b]Sample Input[/b]
+3 4 5
+4 -1 5 8
+1 4 3 9
+3 -1 0 6
+[b]Sample Output[/b]
+6
+
+
+===== Closing Roads =====
+Question Title: Closing Roads
+Priya manages [b]N[/b] warehouses, numbered 1 to [b]N[/b], connected by [b]M[/b] two-way roads, numbered 1 to [b]M[/b]. Road [b]j[/b] joins warehouses [b]u[/b] and [b]v[/b]. Warehouse [b]i[/b] holds [b]s&#91;i&#93;[/b] boxes of stock.
+Two warehouses are in the same group if one can be reached from the other using roads that are still open. The stock of a group is the total stock of all the warehouses in it. A group can also have a single warehouse.
+Because of heavy rain, the city will close [b]K[/b] roads, one by one, in a given order. A closed road never opens again. After each closure, Priya wants to know the largest stock of any group, so that she can decide where to send her trucks.
+Note that there can be more than one road between the same two warehouses. So closing a road does not always split a group.
+For each closure, print the largest stock of any group right after that road is closed.
+
+[b]Input Format:[/b]
+The first line contains three integers [b]N[/b], [b]M[/b] and [b]K[/b].
+The second line contains [b]N[/b] integers [b]s[1][/b], [b]s[2][/b], ..., [b]s[N][/b].
+Each of the next [b]M[/b] lines contains two integers [b]u[/b] and [b]v[/b], describing road [b]j[/b] (roads are given in order, from road 1 to road [b]M[/b]).
+The last line contains [b]K[/b] integers [b]c[1][/b], [b]c[2][/b], ..., [b]c[K][/b], the road numbers in the order they are closed.
+[b]The input format will be read from the STDIN by the candidate.[/b]
+
+[b]Output Format:[/b]
+Print [b]K[/b] lines. The [b]i[/b]-th line contains one integer, the largest stock of any group after the [b]i[/b]-th closure.
+[b]The output will be matched to the candidate&#39;s output printed on the STDOUT.[/b]
+
+[b]Constraints:[/b][ul][li]2 &lt;= [b]N[/b] &lt;= 2 * 10[sup]5[/sup][/li][li]1 &lt;= [b]M[/b] &lt;= 2 * 10[sup]5[/sup][/li][li]1 &lt;= [b]K[/b] &lt;= [b]M[/b][/li][li]1 &lt;= [b]s&#91;i&#93;[/b] &lt;= 10[sup]9[/sup][/li][li]1 &lt;= [b]u[/b], [b]v[/b] &lt;= [b]N[/b], [b]u[/b] != [b]v[/b][/li][li]The [b]K[/b] road numbers are distinct, and each is between 1 and [b]M[/b].[/li][/ul]
+[b]Example:[/b]
+[b]Input:[/b]
+5 5 3
+4 2 7 1 5
+1 2
+2 3
+3 4
+4 5
+1 3
+2 5 3
+[b]Output:[/b]
+19
+13
+7
+[b]Explanation:[/b]
+At the start, all 5 warehouses are in one group with stock 4 + 2 + 7 + 1 + 5 = 19.
+Closing road 2 (2 - 3) does not split anything, because warehouse 3 can still be reached from 1 by road 5. Answer [b]19.[/b]
+Closing road 5 (1 - 3) splits the group into {1, 2} with stock 6 and {3, 4, 5} with stock 13. Answer [b]13.[/b]
+Closing road 3 (3 - 4) gives groups {1, 2} = 6, {3} = 7 and {4, 5} = 6. Answer [b]7.[/b]
+[b]Sample Input[/b]
+3 3 2
+5 5 9
+1 2
+1 2
+2 3
+1 3
+[b]Sample Output[/b]
+19
+10
+
+
+===== Weakest Team =====
+Question Title: Weakest Team
+Coach Vikram has [b]N[/b] players standing in a line, numbered 1 to [b]N[/b], and player [b]i[/b] has skill [b]a&#91;i&#93;[/b]. He must split the line into exactly [b]K[/b] teams, with these rules:
+[ol][li]Each team is a group of consecutive players, and every player is in exactly one team.[/li][li]Every team must have at least [b]L[/b] players.[/li][/ol]
+The strength of a team is its median skill. Sort the skills of the team in increasing order. If the team has [b]t[/b] players, its strength is the value at position ([b]t[/b] + 1) / 2 (integer division), counting from 1. So for an even number of players, the smaller of the two middle values is taken.
+Vikram wants his weakest team to be as strong as possible. Find the maximum possible value of the smallest team strength. If the players cannot be split this way at all, print -1.
+
+[b]Input Format:[/b]
+The first line contains three integers [b]N[/b], [b]K[/b] and [b]L[/b].
+The second line contains [b]N[/b] integers [b]a[1][/b], [b]a[2][/b], ..., [b]a[N][/b].
+[b]The input format will be read from the STDIN by the candidate.[/b]
+
+[b]Output Format:[/b]
+Print one integer, the maximum possible strength of the weakest team, or -1 if no valid split exists.
+[b]The output will be matched to the candidate&#39;s output printed on the STDOUT.[/b]
+
+[b]Constraints:[/b][ul][li]1 &lt;= [b]L[/b] &lt;= [b]N[/b] &lt;= 2 * 10[sup]5[/sup][/li][li]1 &lt;= [b]K[/b] &lt;= [b]N[/b][/li][li]1 &lt;= [b]a&#91;i&#93;[/b] &lt;= 10[sup]9[/sup][/li][/ul]
+[b]Example:[/b]
+[b]Input:[/b]
+7 2 2
+5 1 4 2 8 3 7
+[b]Output:[/b]
+3
+[b]Explanation:[/b]
+Split the line as [5, 1, 4] and [2, 8, 3, 7]. The first team sorted is 1, 4, 5, so its strength is 4. The second team sorted is 2, 3, 7, 8, so its strength is the value at position 2, which is 3. The weakest team has strength 3.
+For both teams to have strength at least 4, more than half of the players in each team must have skill at least 4. With 7 players in two teams, that needs at least 5 such players, but only 4 players (5, 4, 8, 7) have skill at least 4. Answer = [b]3.[/b]
+[b]Sample Input[/b]
+4 2 2
+6 2 9 7
+[b]Sample Output[/b]
+2
+
+
+===== Spreading the News =====
+Question Title: Spreading the News
+Neha&#39;s company has [b]N[/b] employees, numbered 1 to [b]N[/b]. The company phone network is a tree: there are [b]N[/b] - 1 phone lines, and each line connects two employees. An employee can call only the employees directly connected to them by a line.
+At time 0, exactly one employee, the starter, knows some important news. The news then spreads by phone calls, with these rules:
+[ol][li]Employee [b]i[/b] needs [b]c&#91;i&#93;[/b] minutes to make one call.[/li][li]An employee can make only one call at a time, but different employees can be on calls at the same time.[/li][li]A call is made along a phone line to an employee who does not know the news yet. That employee knows the news when the call ends, and can start making calls right away.[/li][/ol]
+Everyone who knows the news can choose the order in which they call their neighbours. Note that this order matters: a neighbour who still has to pass the news to many others should usually be called early.
+For every employee [b]r[/b], find the minimum time after which all [b]N[/b] employees know the news, if [b]r[/b] is the starter and everyone chooses the best order for their calls.
+
+[b]Input Format:[/b]
+The first line contains one integer [b]N[/b].
+The second line contains [b]N[/b] integers [b]c[1][/b], [b]c[2][/b], ..., [b]c[N][/b].
+Each of the next [b]N[/b] - 1 lines contains two integers [b]u[/b] and [b]v[/b], meaning there is a phone line between employees [b]u[/b] and [b]v[/b].
+[b]The input format will be read from the STDIN by the candidate.[/b]
+
+[b]Output Format:[/b]
+Print one line with [b]N[/b] integers separated by spaces. The [b]i[/b]-th integer is the minimum time when employee [b]i[/b] is the starter.
+[b]The output will be matched to the candidate&#39;s output printed on the STDOUT.[/b]
+
+[b]Constraints:[/b][ul][li]1 &lt;= [b]N[/b] &lt;= 2 * 10[sup]5[/sup][/li][li]1 &lt;= [b]c&#91;i&#93;[/b] &lt;= 10[sup]9[/sup][/li][li]1 &lt;= [b]u[/b], [b]v[/b] &lt;= [b]N[/b], [b]u[/b] != [b]v[/b][/li][li]The phone lines form a tree.[/li][/ul]
+[b]Example:[/b]
+[b]Input:[/b]
+5
+2 1 3 1 4
+1 2
+1 3
+1 4
+3 5
+[b]Output:[/b]
+6 6 7 6 11
+[b]Explanation:[/b]
+Take starter 1, with [b]c[1][/b] = 2. Employee 3 still has to pass the news to employee 5, which takes [b]c[3][/b] = 3 more minutes, so employee 1 should call employee 3 first. Employee 3 knows at time 2 and employee 5 at time 2 + 3 = 5. Meanwhile employee 1 calls employee 2 (done at time 4) and then employee 4 (done at time 6). So the answer for starter 1 is [b]6.[/b]
+Take starter 5, with [b]c[5][/b] = 4. Employee 5 calls 3 (done at 4), employee 3 calls 1 (done at 4 + 3 = 7), and employee 1 calls 2 and 4 (done at 9 and 11). So the answer for starter 5 is [b]11.[/b] The other values are found in the same way.
+[b]Sample Input[/b]
+6
+1 1 1 1 1 1
+1 2
+1 3
+1 4
+2 5
+5 6
+[b]Sample Output[/b]
+3 3 4 4 4 5
